@@ -9,7 +9,7 @@ var BluebirdPromise = require('bluebird'),
 /**
  * Constructor
  * @param opts {Object}
- *		opts = {file: <path to htpasswd file}
+ *		opts = {file: <path to a htpasswd file}
  */
 function HtAuth (opts) {
 	if(!(this instanceof HtAuth)) {
@@ -25,7 +25,7 @@ function HtAuth (opts) {
 // -----------------------------------------------------------------------------
 
 /**
- * Finds index of username in an Array of htpasswd lines
+ * Finds the index of username in an Array of htpasswd lines
  * @param username {String}
  * @param list {Array}
  */
@@ -42,7 +42,7 @@ function findUserInList(username, list) {
 }
 
 /**
- * Predicate for file not found OperationalErrors
+ * Predicate for "file not found" OperationalErrors
  * @param err {Error}
  */
 function fileNotFound(err) {
@@ -108,7 +108,7 @@ HtAuth.verify = function(opts) {
 };
 
 /**
- * Generates an htpasswd line. e.g. username:hash
+ * Generates a htpasswd line. e.g. username:hash
  * @param opts {Object}
  */
 HtAuth.line = function(opts) {
@@ -123,8 +123,8 @@ HtAuth.line = function(opts) {
 // -----------------------------------------------------------------------------
 
 /**
- * Finds a line for username and responds with {username, password}
- * password will the hash from the htpasswd file
+ * Finds a line for username and responds with {username, password}.
+ * Password will be the hash from the htpasswd file
  * @param opts {Object}
  * @param callback {Function} (optional)
  */
@@ -161,8 +161,8 @@ HtAuth.prototype.find = function(username, callback) {
 };
 
 /**
- * Returns an array of raw or parsed lines from the htpasswd file. Pass
- * opts.parse = true to user Objects instead of Strings
+ * Return an array of raw or parsed lines from the htpasswd file. Pass
+ * opts.parse = true to get User Objects instead of Strings
  * @param opts {Object}
  * @param callback {Function} (optional)
  */
@@ -205,7 +205,7 @@ HtAuth.prototype.findAll = function(opts, callback) {
 };
 
 /**
- * Adds a user line to the htpasswd file. Fails if a username alread exists.
+ * Adds a user line to the htpasswd file. Fails if a username already exists.
  * Set opts.force = true to overwrite a user. Creates a new file if needed.
  * @param opts {Object}
  * @param callback {Function} (optional)
@@ -250,7 +250,7 @@ HtAuth.prototype.add = function(opts, callback) {
 
 /**
  * Removes a user from the file.  Returns successfully if the user or file does
- * not exists
+ * not exist
  * @param opts {Object}
  * @param callback {Function} (optional)
  */
@@ -321,7 +321,7 @@ HtAuth.prototype.changePassword = function(opts, callback) {
 			return BluebirdPromise.resolve();
 		}).
 		catch(fileNotFound, function(err) {
-			// In this case it makes send to convert the error.
+			// It makes sense to convert the error here.
 			return BluebirdPromise.reject(new Error('User does not exist'));
 		}).
 		catch(function(err) {
