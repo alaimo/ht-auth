@@ -2,7 +2,7 @@
   "name": "ht-auth",
   "version": "0.1.0",
   "description": "Simple authentication with an htpasswd file for node js applications",
-  "main": "./ht-auth",
+  "main": "./htAuth",
   "scripts": {
     "test": "grunt"
   },
