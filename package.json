@@ -1,0 +1,36 @@
+{
+  "name": "ht-auth",
+  "version": "0.1.0",
+  "description": "Simple authentication with an htpasswd file for node js applications",
+  "main": "./lib/ht-auth",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alaimo/ht-auth"
+  },
+  "keywords": [
+    "htpasswd"
+  ],
+  "author": "Jonathan Alaimo",
+  "maintainers": [
+    "alaimo <alaimojon@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alaimo/ht-auth/issues"
+  },
+  "homepage": "https://github.com/alaimo/ht-auth",
+  "dependencies": {
+    "bcryptjs": "^2.1.0",
+    "bluebird": "^2.3.11"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-test": "^0.12.4",
+    "mocha": "^2.0.1"
+  }
+}
