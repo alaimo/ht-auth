@@ -15,7 +15,7 @@ An htpasswd file is a way of storing user credentials in a text file.  Often use
 
 ### Installation
 
-`TBD`
+`npm install ht-auth`
 
 ### Getting Started
 
