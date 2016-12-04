@@ -6,7 +6,7 @@ var BluebirdPromise = require('bluebird'),
 
 	defaultOpts = {
 		file: __dirname + '/.htpasswd',
-		method: 'md5'
+		method: 'MD5'
 	};
 
 /**
