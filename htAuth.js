@@ -1,9 +1,12 @@
 var BluebirdPromise = require('bluebird'),
 	fs = BluebirdPromise.promisifyAll(require('fs')),
 	bcrypt = require('bcryptjs'),
+        md5 = require("apache-md5");
+ 
 
 	defaultOpts = {
-		file: __dirname + '/.htpasswd'
+		file: __dirname + '/.htpasswd',
+		method: 'MD5'
 	};
 
 /**
@@ -55,6 +58,7 @@ function fileNotFound(err) {
 // -----------------------------------------------------------------------------
 
 HtAuth.BCRYPT = 'BCRYPT';
+HtAuth.MD5 = 'MD5';
 
 // -----------------------------------------------------------------------------
 // Class Methods
@@ -79,10 +83,12 @@ HtAuth.hash = function(opts) {
 	}
 
 	// default to bcrypt hashing
-	method = opts.method || HtAuth.BCRYPT;
+	method = opts.method || defaultOpts.method;
 	switch(method) {
 		case HtAuth.BCRYPT:
 			return bcrypt.hashSync(opts.password);
+		case HtAuth.MD5:
+			return md5(opts.password);
 		default:
 			throw new Error('Unsupported method');
 	}
@@ -98,10 +104,12 @@ HtAuth.verify = function(opts) {
 	}
 
 	// default to bcrypt hashing
-	method = opts.method || HtAuth.BCRYPT;
+	method = opts.method || defaultOpts.method;
 	switch(method) {
 		case HtAuth.BCRYPT:
 			return bcrypt.compareSync(opts.password, opts.hash);
+		case HtAuth.MD5:
+			return md5(opts.password, opts.hash);
 		default:
 			throw new Error('Unsupported method');
 	}
